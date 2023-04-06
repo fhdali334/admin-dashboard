@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import Sidebar from "./Components/Sidebar/Sidebar";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import react, { useState } from "react";
+import "./App.css";
+import Navbar from "./Components/Navbar/Navbar";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Cards from "./Components/Cards/Cards";
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const openSidebar = () => {
+    setSidebarOpen(true);
+  };
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container">
+      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+      <Cards />
+      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+ 
+      </div>  
+    </>
   );
 }
 
